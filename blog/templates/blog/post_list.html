@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  </head>
-
-  <body>
-    {% for post in posts %}
-      <h4><a href  = '#'>{{post.author}}</a></h4>
-      <h4>title of the book: <a href  = '#'>{{post.title}}</a></h4>
-      <h4>it's Publishing date is: <a href  = '#'>{{post.publish_date}}</a></h4>
-      <h4>Text in it is: <a href  = '#'>{{post.text}}</a></h4>
-      <br>
-    {% endfor %}
-  </body>
-</html>
+{% extends 'blog/base.html' %}
+{% block content %}
+{% for post in posts %}
+    <div class="post">
+      <b><p>{{ post.author }}</p></b>
+          <div class="date">
+            {{ post.publish_date }}
+        </div>
+        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+        <b><p>{{ post.text|linebreaksbr }}</p></b>
+        <br><br><br>
+    </div>
+{% endfor %}
+{% endblock %}
